@@ -22,23 +22,39 @@ This is a backend-only application for file storage and sharing, built using Go.
 ```
 file-storage-app/
 ├── cmd/
-│   └── main.go            # Application entry point
+│   └── main.go                # Entry point for the application
 ├── config/
-│   ├── config.go          # Configuration loader
-│   └── app.yaml           # Application configuration
+│   ├── config.go              # Configuration loader
+│   └── app.yaml               # Application configuration file
 ├── internal/
-│   ├── auth/              # Authentication logic
-│   ├── file/              # File handling logic
-│   └── utils/             # Utility functions
+│   ├── auth/
+│   │   ├── auth.go            # JWT-based authentication logic
+│   │   └── middleware.go      # Authentication middleware
+│   ├── file/
+│   │   ├── upload.go          # File upload handling
+│   │   ├── download.go        # File download handling
+│   │   └── service.go         # Core file service logic
+│   └── utils/
+│       ├── logger.go          # Logging utility
+│       └── helpers.go         # Common helper functions
 ├── pkg/
-│   ├── database/          # Database connection
-│   └── storage/           # Storage backend abstraction
-├── test/                  # Unit tests
-├── docker-compose.yml     # Docker setup for development
-├── Dockerfile             # Dockerfile for the application
-├── Makefile               # Build and run automation
-├── go.mod                 # Go module file
-└── README.md              # Project documentation
+│   ├── database/
+│   │   ├── postgres.go        # PostgreSQL connection and setup
+│   │   └── migrations/
+│   │       └── init.sql       # Initial database schema
+│   └── storage/
+│       ├── storage.go         # Storage interface
+│       ├── local.go           # Local filesystem implementation
+│       └── s3.go              # S3-compatible storage implementation
+├── test/
+│   ├── auth_test.go           # Unit tests for authentication
+│   ├── file_test.go           # Unit tests for file handling
+│   └── utils_test.go          # Unit tests for utilities
+├── docker-compose.yml         # Docker Compose setup
+├── Dockerfile                 # Dockerfile for the Go app
+├── Makefile                   # Makefile for build and automation
+├── go.mod                     # Go module file
+└── LICENSE                    # License file
 ```
 
 ## Setup and Installation
